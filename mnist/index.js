@@ -36,7 +36,7 @@ function createConvModel() {
   // Create a sequential neural network model. tf.sequential provides an API
   // for creating "stacked" models where the output from one layer is used as
   // the input to the next layer.
-  const model = tf.sequential();
+  const model = tf.sequential();//构建DAG图
 
   // The first layer of the convolutional neural network plays a dual role:
   // it is both the input layer of the neural network and a layer that performs
@@ -49,28 +49,28 @@ function createConvModel() {
     kernelSize: 3,
     filters: 16,
     activation: 'relu'
-  }));
+  }));//卷积层
 
   // After the first layer we include a MaxPooling layer. This acts as a sort of
   // downsampling using max values in a region instead of averaging.
   // https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks
-  model.add(tf.layers.maxPooling2d({poolSize: 2, strides: 2}));
+  model.add(tf.layers.maxPooling2d({poolSize: 2, strides: 2}));//池化
 
   // Our third layer is another convolution, this time with 32 filters.
-  model.add(tf.layers.conv2d({kernelSize: 3, filters: 32, activation: 'relu'}));
+  model.add(tf.layers.conv2d({kernelSize: 3, filters: 32, activation: 'relu'}));//卷积
 
   // Max pooling again.
-  model.add(tf.layers.maxPooling2d({poolSize: 2, strides: 2}));
+  model.add(tf.layers.maxPooling2d({poolSize: 2, strides: 2}));//池化
 
   // Add another conv2d layer.
-  model.add(tf.layers.conv2d({kernelSize: 3, filters: 32, activation: 'relu'}));
+  model.add(tf.layers.conv2d({kernelSize: 3, filters: 32, activation: 'relu'}));//卷积
 
   // Now we flatten the output from the 2D filters into a 1D vector to prepare
   // it for input into our last layer. This is common practice when feeding
   // higher dimensional data to a final classification output layer.
-  model.add(tf.layers.flatten({}));
+  model.add(tf.layers.flatten({}));//一般层，用于扁平
 
-  model.add(tf.layers.dense({units: 64, activation: 'relu'}));
+  model.add(tf.layers.dense({units: 64, activation: 'relu'}));//连接
 
   // Our last layer is a dense layer which has 10 output units, one for each
   // output class (i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9). Here the classes actually
@@ -79,7 +79,7 @@ function createConvModel() {
   // We use the softmax function as the activation for the output layer as it
   // creates a probability distribution over our 10 classes so their output
   // values sum to 1.
-  model.add(tf.layers.dense({units: 10, activation: 'softmax'}));
+  model.add(tf.layers.dense({units: 10, activation: 'softmax'}));//softmax用于多分类过程中，它将多个神经元的输出，映射到（0,1）区间内，可以看成概率来理解，从而来进行多分类！
 
   return model;
 }
