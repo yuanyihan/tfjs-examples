@@ -150,7 +150,9 @@ async function train(model) {
   // function of the model.
   model.compile({
     optimizer,
-    loss: 'categoricalCrossentropy',
+    loss: 'categoricalCrossentropy',//损失函数
+	//https://www.zhihu.com/question/36307214
+	//适用于多分类问题，并使用softmax作为输出层的激活函数的情况。
     metrics: ['accuracy'],
   });
 
