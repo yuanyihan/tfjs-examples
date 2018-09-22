@@ -104,6 +104,7 @@ export class MnistData {
    *     `[numTrainExamples, 10]`.
    */
   getTrainData() {
+	  //这里涵数名和官网不一样~~~
     const xs = tf.tensor4d(
         this.trainImages,
         [this.trainImages.length / IMAGE_SIZE, IMAGE_H, IMAGE_W, 1]);

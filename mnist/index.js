@@ -33,6 +33,9 @@ import * as ui from './ui';
  * @returns {tf.Model} An instance of tf.Model.
  */
 function createConvModel() {
+	//7分钟了解js:https://mc.ai/get-to-know-tensorflow-js-in-7-minutes/
+  //doc阅读：https://js.tensorflow.org/tutorials/mnist.html
+  //python的阅读：https://blog.csdn.net/u011913612/article/details/74011008
   // Create a sequential neural network model. tf.sequential provides an API
   // for creating "stacked" models where the output from one layer is used as
   // the input to the next layer.
@@ -50,7 +53,7 @@ function createConvModel() {
     filters: 16,
     activation: 'relu'
   }));//卷积层
-
+//relu的拓展：https://blog.csdn.net/zchang81/article/details/70224688
   // After the first layer we include a MaxPooling layer. This acts as a sort of
   // downsampling using max values in a region instead of averaging.
   // https://www.quora.com/What-is-max-pooling-in-convolutional-neural-networks
@@ -80,7 +83,7 @@ function createConvModel() {
   // creates a probability distribution over our 10 classes so their output
   // values sum to 1.
   model.add(tf.layers.dense({units: 10, activation: 'softmax'}));//softmax用于多分类过程中，它将多个神经元的输出，映射到（0,1）区间内，可以看成概率来理解，从而来进行多分类！
-
+//拓展阅读：https://www.cnblogs.com/alexanderkun/p/8098781.html
   return model;
 }
 
