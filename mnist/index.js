@@ -73,7 +73,7 @@ function createConvModel() {
   // higher dimensional data to a final classification output layer.
   model.add(tf.layers.flatten({}));//一般层，用于扁平
 
-  model.add(tf.layers.dense({units: 64, activation: 'relu'}));//连接
+  model.add(tf.layers.dense({units: 64, activation: 'relu'}));//连接-隐藏
 
   // Our last layer is a dense layer which has 10 output units, one for each
   // output class (i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9). Here the classes actually
@@ -82,7 +82,8 @@ function createConvModel() {
   // We use the softmax function as the activation for the output layer as it
   // creates a probability distribution over our 10 classes so their output
   // values sum to 1.
-  model.add(tf.layers.dense({units: 10, activation: 'softmax'}));//softmax用于多分类过程中，它将多个神经元的输出，映射到（0,1）区间内，可以看成概率来理解，从而来进行多分类！
+  model.add(tf.layers.dense({units: 10, activation: 'softmax'}));//连接-输出
+  //softmax用于多分类过程中，它将多个神经元的输出，映射到（0,1）区间内，可以看成概率来理解，从而来进行多分类！
 //拓展阅读：https://www.cnblogs.com/alexanderkun/p/8098781.html
   return model;
 }
